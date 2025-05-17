@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduSpark – Learn, Create, and Grow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    :root {
+      --sky: #4fc3f7;
+      --green: #81c784;
+      --yellow: #ffe082;
+      --orange: #ffb74d;
+      --blue: #1976d2;
+      --pink: #f06292;
+      --bg: linear-gradient(135deg, #e3f9fd 0%, #fffbe7 100%);
+      --card: #fff;
+      --shadow: 0 4px 24px 0 rgba(76,175,80,0.10);
+      --radius: 18px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Nunito', Arial, sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* playful background shapes */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -100px; left: -100px; width: 300px; height: 300px;
+      background: radial-gradient(circle, var(--sky) 60%, transparent 100%);
+      z-index: 0;
+      opacity: 0.15;
+      border-radius: 50%;
+      animation: float1 12s infinite alternate;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -80px; right: -80px; width: 220px; height: 220px;
+      background: radial-gradient(circle, var(--orange) 60%, transparent 100%);
+      z-index: 0;
+      opacity: 0.15;
+      border-radius: 50%;
+      animation: float2 10s infinite alternate;
+    }
+    @keyframes float1 { 0%{transform:translateY(0);} 100%{transform:translateY(30px);} }
+    @keyframes float2 { 0%{transform:translateX(0);} 100%{transform:translateX(-40px);} }
+
+    header {
+      background: var(--sky);
+      color: #fff;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      z-index: 2;
+      position: relative;
+    }
+    .logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 12px #81c78455;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.3rem 1rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover {
+      background: var(--green);
+      color: #1976d2;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 2rem 2rem 2rem;
+      background: none;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content {
+      max-width: 500px;
+      z-index: 2;
+    }
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.6rem;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .hero-tagline {
+      font-size: 1.3rem;
+      color: var(--green);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-actions button {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ffb74d55;
+      transition: background 0.2s;
+    }
+    .hero-actions button:hover {
+      background: var(--blue);
+    }
+    .hero-illustration {
+      flex: 1 1 320px;
+      text-align: right;
+      min-width: 260px;
+    }
+    .hero-illustration img {
+      width: 340px;
+      max-width: 100%;
+      filter: drop-shadow(0 8px 32px #4fc3f7aa);
+      border-radius: 18px;
+      background: #fff7;
+    }
+
+    /* Class Tabs */
+    .class-tabs {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2.5rem auto 1rem auto;
+      flex-wrap: wrap;
+      z-index: 1;
+      position: relative;
+    }
+    .class-tab {
+      background: var(--yellow);
+      color: var(--blue);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ffe08255;
+      transition: background 0.2s, color 0.2s;
+      outline: none;
+      margin-bottom: -2px;
+    }
+    .class-tab.active, .class-tab:hover {
+      background: var(--green);
+      color: #fff;
+    }
+
+    /* Subjects Grid */
+    .subjects-section {
+      background: #fff;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      max-width: 950px;
+      margin: 0 auto 2.5rem auto;
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .subjects-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--blue);
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .subject-card {
+      background: var(--sky);
+      color: #fff;
+      border-radius: 16px;
+      padding: 1.1rem 0.7rem;
+      box-shadow: 0 2px 8px #4fc3f755;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .subject-card:hover {
+      background: var(--green);
+      transform: translateY(-5px) scale(1.04);
+    }
+    .subject-card i {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--yellow);
+      text-shadow: 0 2px 8px #ffe08277;
+    }
+    .subject-card .subject-type {
+      font-size: 0.92rem;
+      font-weight: 400;
+      margin-top: 0.3rem;
+      color: #fff9;
+    }
+    /* Interactive Content Icons */
+    .content-icons {
+      margin-top: 0.7rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .content-icons i {
+      font-size: 1.1rem;
+      color: var(--orange);
+      background: #fff7;
+      border-radius: 50%;
+      padding: 0.3rem;
+    }
+
+    /* Creative Corner */
+    .creative-section {
+      max-width: 950px;
+      margin: 2.5rem auto 2.5rem auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .creative-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--pink);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .creative-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+    .creative-card {
+      background: var(--yellow);
+      color: var(--blue);
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: 0 2px 8px #ffe08255;
+      text-align: center;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .creative-card:hover {
+      background: var(--orange);
+      color: #fff;
+      transform: scale(1.04);
+    }
+    .creative-card i {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: var(--green);
+      display: block;
+    }
+
+    /* Skill-based Courses */
+    .skills-section {
+      max-width: 950px;
+      margin: 2.5rem auto 2.5rem auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .skills-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--blue);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-card {
+      background: var(--green);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: 0 2px 8px #81c78455;
+      text-align: center;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .skill-card:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: scale(1.04);
+    }
+    .skill-card i {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: var(--yellow);
+      display: block;
+    }
+
+    /* Student Dashboard */
+    .dashboard-section {
+      max-width: 950px;
+      margin: 2.5rem auto 2.5rem auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .dashboard-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--orange);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .dashboard-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .dashboard-card {
+      background: var(--sky);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.1rem 1.5rem;
+      box-shadow: 0 2px 8px #4fc3f755;
+      min-width: 180px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+      margin-bottom: 0.7rem;
+    }
+    .dashboard-card .fa {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: var(--yellow);
+      display: block;
+    }
+    .badges-list {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.7rem;
+      justify-content: center;
+    }
+    .badge {
+      background: var(--yellow);
+      color: var(--blue);
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      box-shadow: 0 1px 4px #ffe08277;
+    }
+    .leaderboard {
+      margin-top: 1.2rem;
+      text-align: center;
+    }
+    .leaderboard-title {
+      font-size: 1.1rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .leaderboard-list {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .leaderboard-item {
+      background: var(--yellow);
+      color: var(--blue);
+      border-radius: 8px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.97rem;
+      font-weight: 700;
+      box-shadow: 0 1px 4px #ffe08277;
+    }
+
+    /* Live Classes & Assignments */
+    .live-section {
+      max-width: 950px;
+      margin: 2.5rem auto 2.5rem auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .live-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--sky);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .live-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .live-card {
+      background: var(--yellow);
+      color: var(--blue);
+      border-radius: 14px;
+      padding: 1.1rem 1.5rem;
+      box-shadow: 0 2px 8px #ffe08255;
+      min-width: 180px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+      margin-bottom: 0.7rem;
+    }
+    .live-card .fa {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: var(--green);
+      display: block;
+    }
+    .calendar {
+      margin-top: 0.7rem;
+      font-size: 0.98rem;
+      color: var(--blue);
+      background: #fff7;
+      border-radius: 8px;
+      padding: 0.3rem 0.7rem;
+      display: inline-block;
+    }
+    .download-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: var(--orange);
+      text-decoration: underline;
+      font-size: 0.96rem;
+      cursor: pointer;
+    }
+
+    /* Parental Panel */
+    .parental-section {
+      max-width: 950px;
+      margin: 2.5rem auto 2.5rem auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem 1.5rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .parental-title {
+      font-family: 'Baloo 2', cursive;
+      color: var(--pink);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .parental-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .parental-card {
+      background: var(--green);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1.1rem 1.5rem;
+      box-shadow: 0 2px 8px #81c78455;
+      min-width: 180px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+      margin-bottom: 0.7rem;
+    }
+    .parental-card .fa {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: var(--yellow);
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--sky);
+      color: #fff;
+      padding: 2rem 1rem 1rem 1rem;
+      text-align: center;
+      font-size: 1rem;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-socials {
+      margin-bottom: 1rem;
+    }
+    .footer-socials a {
+      color: var(--yellow);
+      margin: 0 0.7rem;
+      font-size: 1.5rem;
+      transition: color 0.3s, text-shadow 0.3s;
+      text-decoration: none;
+    }
+    .footer-socials a:hover {
+      color: var(--orange);
+      text-shadow: 0 0 10px var(--orange);
+    }
+    .newsletter-form {
+      margin: 1rem auto 0 auto;
+      max-width: 350px;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1 1 auto;
+      background: #fff;
+      color: var(--blue);
+      border: 1px solid var(--sky);
+      border-radius: 6px;
+      padding: 0.4rem 1rem;
+      font-size: 1rem;
+      outline: none;
+    }
+    .newsletter-form button {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 1rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 0 5px var(--green);
+    }
+    .newsletter-form button:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem 1rem 1rem;
+      }
+      .hero-illustration {
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+      .dashboard-grid, .live-grid, .parental-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .class-tabs {
+        gap: 0.3rem;
+      }
+      .hero-title {
+        font-size: 1.5rem;
+      }
+      .hero-illustration img {
+        width: 90vw;
+      }
+      .subjects-section, .creative-section, .skills-section, .dashboard-section, .live-section, .parental-section {
+        padding: 1rem 0.2rem 1rem 0.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">EduSpark</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Live</a>
+    <a href="#">Parents</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-title">Learn, Create, and Grow with EduSpark</div>
+    <div class="hero-tagline">Fun, interactive learning for Classes 1–10</div>
+    <div class="hero-actions">
+      <button>Start Learning</button>
+      <button style="background:var(--green);">Browse Courses</button>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Happy students illustration">
+  </div>
+</section>
+
+<!-- Class Tabs -->
+<div class="class-tabs" id="classTabs">
+  <!-- Tabs will be generated by JS -->
+</div>
+
+<!-- Subjects Section -->
+<section class="subjects-section">
+  <div class="subjects-title" id="subjectsTitle">Class 1 Subjects</div>
+  <div class="subjects-grid" id="subjectsGrid">
+    <!-- Subject cards will be generated by JS -->
+  </div>
+</section>
+
+<!-- Creative Corner -->
+<section class="creative-section">
+  <div class="creative-title">🎨 Creative Corner</div>
+  <div class="creative-grid">
+    <div class="creative-card"><i class="fa-solid fa-paint-brush"></i>Art & Craft</div>
+    <div class="creative-card"><i class="fa-solid fa-music"></i>Music</div>
+    <div class="creative-card"><i class="fa-solid fa-book-open"></i>Storytelling & Drama</div>
+    <div class="creative-card"><i class="fa-solid fa-hammer"></i>DIY Projects</div>
+  </div>
+</section>
+
+<!-- Skill-based Courses -->
+<section class="skills-section">
+  <div class="skills-title">🚀 Skill-based Courses <span style="font-size:0.9rem;color:#81c784;">(For Classes 6–10)</span></div>
+  <div class="skills-grid">
+    <div class="skill-card"><i class="fa-solid fa-cloud"></i>Cloud Computing</div>
+    <div class="skill-card"><i class="fa-solid fa-code"></i>Coding for Kids</div>
+    <div class="skill-card"><i class="fa-solid fa-robot"></i>Robotics</div>
+    <div class="skill-card"><i class="fa-solid fa-coins"></i>Financial Literacy</div>
+    <div class="skill-card"><i class="fa-solid fa-microphone"></i>Public Speaking</div>
+    <div class="skill-card"><i class="fa-solid fa-lightbulb"></i>Design Thinking</div>
+    <div class="skill-card"><i class="fa-solid fa-gamepad"></i>Animation & Game Design</div>
+  </div>
+</section>
+
+<!-- Student Dashboard -->
+<section class="dashboard-section">
+  <div class="dashboard-title">📊 Student Dashboard</div>
+  <div class="dashboard-grid">
+    <div class="dashboard-card"><i class="fa-solid fa-book"></i>My Courses</div>
+    <div class="dashboard-card"><i class="fa-solid fa-trophy"></i>My Achievements
+      <div class="badges-list">
+        <div class="badge" title="Quiz Star">⭐</div>
+        <div class="badge" title="Science Whiz">🔬</div>
+        <div class="badge" title="Math Master">➗</div>
+      </div>
+    </div>
+    <div class="dashboard-card"><i class="fa-solid fa-rocket"></i>My Projects</div>
+  </div>
+  <div class="leaderboard">
+    <div class="leaderboard-title">Leaderboard</div>
+    <div class="leaderboard-list">
+      <div class="leaderboard-item">👑 Aryan</div>
+      <div class="leaderboard-item">🌟 Priya</div>
+      <div class="leaderboard-item">🏅 Rahul</div>
+      <div class="leaderboard-item">🎓 Ananya</div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Classes & Assignments -->
+<section class="live-section">
+  <div class="live-title">🗓️ Live Classes & Assignments</div>
+  <div class="live-grid">
+    <div class="live-card"><i class="fa-solid fa-chalkboard-teacher"></i>Next Class: <div class="calendar">Mon, 20 May, 10:00 AM</div></div>
+    <div class="live-card"><i class="fa-solid fa-file-alt"></i>Assignment: <a class="download-link" href="#">Download Worksheet</a></div>
+    <div class="live-card"><i class="fa-solid fa-calendar-check"></i>My Schedule</div>
+    <div class="live-card"><i class="fa-solid fa-book-open"></i>Notes: <a class="download-link" href="#">Download Notes</a></div>
+  </div>
+</section>
+
+<!-- Parental Access Panel -->
+<section class="parental-section">
+  <div class="parental-title">👨‍👩‍👧 Parental Access Panel</div>
+  <div class="parental-grid">
+    <div class="parental-card"><i class="fa-solid fa-chart-line"></i>Progress Reports</div>
+    <div class="parental-card"><i class="fa-solid fa-lightbulb"></i>Recommendations</div>
+    <div class="parental-card"><i class="fa-solid fa-comments"></i>Feedback & Messaging</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-socials">
+    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+  <form class="newsletter-form">
+    <input type="email" placeholder="Subscribe to newsletter" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <div style="margin-top:1rem;">
+    <a href="#" style="color:#fff;text-decoration:underline;">Contact</a> | 
+    <a href="#" style="color:#fff;text-decoration:underline;">Privacy Policy</a> | 
+    <a href="#" style="color:#fff;text-decoration:underline;">Mobile App</a>
+  </div>
+  <div style="margin-top:1rem;">&copy; 2025 EduSpark | All rights reserved.</div>
+</footer>
+
+<script>
+  // Class Tabs and Subjects Data
+  const subjectsByClass = {
+    1: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Environmental Studies", icon: "fa-leaf", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    2: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Environmental Studies", icon: "fa-leaf", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    3: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    4: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    5: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    6: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    7: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    8: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    9: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+    10: [
+      { name: "English", icon: "fa-book", type: "Core" },
+      { name: "Mathematics", icon: "fa-square-root-alt", type: "Core" },
+      { name: "Science", icon: "fa-flask", type: "Core" },
+      { name: "Social Studies", icon: "fa-globe", type: "Core" },
+      { name: "Computers", icon: "fa-desktop", type: "Core" },
+    ],
+  };
+  const contentIcons = [
+    { icon: "fa-video", title: "Videos" },
+    { icon: "fa-question-circle", title: "Quizzes" },
+    { icon: "fa-file-alt", title: "Worksheets" }
+  ];
+  // Generate Class Tabs
+  const classTabs = document.getElementById('classTabs');
+  let activeClass = 1;
+  for(let c=1; c<=10; c++) {
+    const btn = document.createElement('button');
+    btn.className = 'class-tab' + (c===1 ? ' active' : '');
+    btn.innerText = `Class ${c}`;
+    btn.onclick = () => {
+      document.querySelectorAll('.class-tab').forEach(tab => tab.classList.remove('active'));
+      btn.classList.add('active');
+      activeClass = c;
+      renderSubjects();
+    };
+    classTabs.appendChild(btn);
+  }
+  // Render Subjects
+  function renderSubjects() {
+    document.getElementById('subjectsTitle').innerText = `Class ${activeClass} Subjects`;
+    const grid = document.getElementById('subjectsGrid');
+    grid.innerHTML = '';
+    subjectsByClass[activeClass].forEach(subj => {
+      const card = document.createElement('div');
+      card.className = 'subject-card';
+      card.innerHTML = `<i class="fa-solid ${subj.icon}"></i>${subj.name}<div class="subject-type">${subj.type}</div>`;
+      // Add interactive content icons
+      const iconsDiv = document.createElement('div');
+      iconsDiv.className = 'content-icons';
+      contentIcons.forEach(ci => {
+        iconsDiv.innerHTML += `<i class="fa-solid ${ci.icon}" title="${ci.title}"></i>`;
+      });
+      card.appendChild(iconsDiv);
+      grid.appendChild(card);
+    });
+  }
+  renderSubjects();
+
+  // Newsletter form
+  document.querySelector('.newsletter-form').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Thank you for subscribing to EduSpark!');
+    e.target.reset();
+  });
+</script>
+
+</body>
+</html>

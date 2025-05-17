@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise School | Classes 1 to 10</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f8fb;
+            color: #222;
+        }
+        header {
+            background: #3498db;
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #2980b9;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(52,152,219,0.1);
+        }
+        h2 {
+            color: #2980b9;
+        }
+        .classes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .class-card {
+            flex: 1 1 200px;
+            background: #eaf6fb;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 1px 4px rgba(41,128,185,0.07);
+            transition: transform 0.2s;
+        }
+        .class-card:hover {
+            transform: scale(1.05);
+            background: #d0eaf7;
+        }
+        .footer {
+            background: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            .classes-list {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Sunrise School</h1>
+    <p>Empowering students from Class 1 to 10</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#classes">Classes</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container" id="about">
+    <h2>About Us</h2>
+    <p>
+        Sunrise School provides quality education for students from Class 1 to 10. 
+        Our dedicated teachers, modern curriculum, and vibrant campus create the perfect environment for holistic learning and growth.
+    </p>
+</div>
+
+<div class="container" id="classes">
+    <h2>Our Classes</h2>
+    <div class="classes-list">
+        <!-- Repeat this block for each class -->
+        <div class="class-card">
+            <h3>Class 1</h3>
+            <p>Building strong foundations in reading, writing, and arithmetic.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 2</h3>
+            <p>Encouraging curiosity and creativity in young minds.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 3</h3>
+            <p>Introducing science, social studies, and more.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 4</h3>
+            <p>Developing critical thinking and problem-solving skills.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 5</h3>
+            <p>Fostering teamwork and communication through projects.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 6</h3>
+            <p>Expanding horizons with advanced subjects and activities.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 7</h3>
+            <p>Encouraging independent learning and research.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 8</h3>
+            <p>Preparing students for higher studies and competitions.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 9</h3>
+            <p>In-depth study of core subjects and career guidance.</p>
+        </div>
+        <div class="class-card">
+            <h3>Class 10</h3>
+            <p>Board exam preparation and holistic development.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="admissions">
+    <h2>Admissions</h2>
+    <p>
+        Admissions for the academic year 2025-26 are open!<br>
+        <strong>Eligibility:</strong> Students seeking admission to Classes 1 to 10.<br>
+        <strong>How to Apply:</strong> Visit our campus or contact us for an application form.<br>
+        <strong>Documents Required:</strong> Birth certificate, previous class report card, passport-size photographs.
+    </p>
+</div>
+
+<div class="container" id="contact">
+    <h2>Contact Us</h2>
+    <p>
+        <strong>Address:</strong> 123 Learning Lane, City, State, ZIP<br>
+        <strong>Email:</strong> info@sunriseschool.edu.in<br>
+        <strong>Phone:</strong> +91-12345-67890
+    </p>
+</div>
+
+<div class="footer">
+    &copy; 2025 Sunrise School. All rights reserved.
+</div>
+
+</body>
+</html>

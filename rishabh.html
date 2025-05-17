@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Star Coaching Center – Empowering Students Worldwide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #1976d2;
+      --accent: #ffb74d;
+      --success: #81c784;
+      --danger: #f06292;
+      --background: #f6f8fa;
+      --card: #fff;
+      --text: #222;
+      --shadow: 0 4px 24px 0 rgba(76,175,80,0.10);
+      --radius: 18px;
+      --dark-background: #181a28;
+      --dark-card: #23263a;
+      --dark-text: #f6f8fa;
+    }
+    body {
+      margin: 0;
+      font-family: 'Nunito', Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+    body.dark {
+      background: var(--dark-background);
+      color: var(--dark-text);
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      z-index: 2;
+      position: relative;
+    }
+    .logo {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 12px #81c78455;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 1.2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.08rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a.active, nav a:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      margin-left: 1.2rem;
+      transition: color 0.2s;
+    }
+    .theme-toggle:hover { color: var(--accent); }
+    .auth-btn {
+      background: var(--success);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.1rem;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .auth-btn:hover { background: var(--danger); }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 2rem 1.5rem 2rem;
+      min-height: 320px;
+      background: linear-gradient(120deg, #e3f9fd 60%, #fffbe7 100%);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    body.dark .hero {
+      background: linear-gradient(120deg, #23263a 60%, #181a28 100%);
+    }
+    .hero-content {
+      max-width: 500px;
+      z-index: 2;
+    }
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 2.3rem;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: var(--success);
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-actions button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ffb74d55;
+      transition: background 0.2s;
+    }
+    .hero-actions button:hover { background: var(--primary); }
+    .hero-illustration {
+      flex: 1 1 320px;
+      text-align: right;
+      min-width: 220px;
+    }
+    .hero-illustration img {
+      width: 300px;
+      max-width: 100%;
+      filter: drop-shadow(0 8px 32px #1976d2aa);
+      border-radius: 18px;
+      background: #fff7;
+    }
+
+    /* Info bar */
+    .info-bar {
+      background: var(--success);
+      color: #fff;
+      text-align: center;
+      font-size: 1.08rem;
+      padding: 0.7rem 1rem;
+      margin: 0 auto 1.5rem auto;
+      border-radius: 0 0 var(--radius) var(--radius);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      max-width: 900px;
+    }
+    body.dark .info-bar { background: var(--accent); color: #23263a; }
+
+    /* Cards */
+    .cards-section {
+      max-width: 1100px;
+      margin: 2rem auto 2.5rem auto;
+      padding: 0 1rem;
+    }
+    .cards-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+    .beautiful-card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.12);
+      padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 310px;
+      min-height: 320px;
+      border: 1.5px solid #e3f9fd;
+    }
+    .beautiful-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 12px 30px rgba(76, 175, 80, 0.18);
+      border-color: var(--success);
+    }
+    .beautiful-card .card-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #1976d288;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent);
+    }
+    .beautiful-card .card-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.15rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .beautiful-card .card-desc {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      min-height: 48px;
+    }
+    .beautiful-card .card-stars {
+      color: var(--success);
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+    }
+    .beautiful-card .card-review {
+      font-size: 0.98rem;
+      color: #444;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    body.dark .beautiful-card {
+      background: var(--dark-card);
+      color: var(--dark-text);
+      border-color: #23263a;
+    }
+    body.dark .beautiful-card .card-title { color: var(--accent); }
+    body.dark .beautiful-card .card-desc, body.dark .beautiful-card .card-review { color: #eee; }
+
+    /* Features */
+    .features-section {
+      max-width: 1100px;
+      margin: 2rem auto 2.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: var(--success);
+      color: #fff;
+      border-radius: 18px;
+      padding: 1.2rem 1.2rem 1.1rem 1.2rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.12rem;
+      box-shadow: 0 2px 12px #81c78455;
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .feature-card i {
+      font-size: 2.1rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      display: block;
+    }
+    .feature-card:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: scale(1.04);
+    }
+    body.dark .feature-card { background: var(--accent); color: #23263a; }
+    body.dark .feature-card:hover { background: var(--success); color: #fff; }
+
+    /* Smart Timer */
+    .timer-section {
+      text-align: center;
+      margin: 1.5rem 0 2.5rem 0;
+    }
+    .timer-label {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .timer {
+      font-size: 2.1rem;
+      font-family: 'Baloo 2', cursive;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+      background: #fff3;
+      padding: 0.4rem 1.2rem;
+      border-radius: 12px;
+    }
+    body.dark .timer { background: #23263a; color: var(--success);}
+    /* Cartoon Mascot */
+    .cartoon-section {
+      text-align: center;
+      margin: 2.5rem 0;
+    }
+    .cartoon-img {
+      width: 180px;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px #1976d244;
+      margin-bottom: 1rem;
+      background: #fff;
+      display: inline-block;
+    }
+    .cartoon-caption {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+    }
+    /* Modal */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.4);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.active { display: flex; }
+    .modal {
+      background: #fff;
+      color: #222;
+      border-radius: 16px;
+      padding: 2rem 2.5rem 1.5rem 2.5rem;
+      box-shadow: 0 8px 32px #0002;
+      min-width: 320px;
+      max-width: 95vw;
+      text-align: center;
+      position: relative;
+    }
+    body.dark .modal { background: #23263a; color: #f6f8fa; }
+    .modal h2 { margin-bottom: 1.2rem; }
+    .modal input {
+      display: block;
+      width: 90%;
+      margin: 0.7rem auto 1rem auto;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1.07rem;
+      outline: none;
+    }
+    .modal button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.3rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal button:hover { background: var(--success); }
+    .modal .close-btn {
+      position: absolute;
+      top: 0.7rem; right: 1.2rem;
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal .close-btn:hover { color: var(--danger); }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem 1rem 1rem 1rem;
+      text-align: center;
+      font-size: 1rem;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-socials {
+      margin-bottom: 1rem;
+    }
+    .footer-socials a {
+      color: var(--accent);
+      margin: 0 0.7rem;
+      font-size: 1.5rem;
+      transition: color 0.3s, text-shadow 0.3s;
+      text-decoration: none;
+    }
+    .footer-socials a:hover {
+      color: var(--success);
+      text-shadow: 0 0 10px var(--success);
+    }
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem 1rem 1rem;
+      }
+      .hero-illustration {
+        margin-top: 1.5rem;
+        text-align: center;
+      }
+    }
+    @media (max-width: 600px) {
+      .cards-grid, .features-section {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .hero-illustration img { width: 90vw; }
+      .modal { padding: 1.2rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">Star Coaching Center</div>
+  <nav>
+    <a href="#" class="active" id="homeLink">Home</a>
+    <a href="#" id="dailyLink">Daily Study Material</a>
+    <a href="#" id="studentsLink">Total Students</a>
+    <a href="#" id="aiLink">AI Tool</a>
+    <a href="#" id="parentLink">Parents</a>
+    <a href="#" id="gameLink">Games</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode"><i class="fa-solid fa-moon"></i></button>
+    <button class="auth-btn" id="authBtn">Sign In</button>
+  </nav>
+</header>
+
+<!-- Home Page -->
+<div id="homePage">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-title">Learn, Achieve, and Shine with Star Coaching Center</div>
+      <div class="hero-tagline">Hosted by <b>Manish Sir</b>, CEO of Star Coaching Center</div>
+      <div class="hero-actions">
+        <button onclick="alert('Explore our courses!')">Start Learning</button>
+        <button onclick="alert('Browse our skill-based courses!')">Skill Courses</button>
+      </div>
+      <div style="font-size:1.1rem;color:var(--primary);margin-bottom:0.7rem;">
+        <b>20,000 offline centres</b> worldwide • Online skill-based courses available
+      </div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Students studying">
+    </div>
+  </div>
+  <div class="info-bar">
+    🌍 We have 20,000 offline centres across the globe and provide skill-based courses through our online platform.
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">What Our Students Say</div>
+    <div class="cards-grid" id="reviewCards"></div>
+  </section>
+  <section class="features-section">
+    <div class="feature-card"><i class="fa-solid fa-award"></i>Gamified Learning <br><span style="font-size:0.97rem;font-weight:400;">Earn coins, badges, and climb the leaderboard!</span></div>
+    <div class="feature-card"><i class="fa-solid fa-language"></i>Multilingual Support <br><span style="font-size:0.97rem;font-weight:400;">Available in English, Hindi, and more.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-universal-access"></i>Accessibility <br><span style="font-size:0.97rem;font-weight:400;">Text-to-speech & font scaling for all learners.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-chalkboard-teacher"></i>Live Classes & Assignments <br><span style="font-size:0.97rem;font-weight:400;">Interactive sessions with top educators.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-laptop-code"></i>Skill-based Online Courses <br><span style="font-size:0.97rem;font-weight:400;">Coding, design, public speaking & more.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-globe"></i>Global Community <br><span style="font-size:0.97rem;font-weight:400;">Connect with 20,000+ centres worldwide.</span></div>
+  </section>
+  <section class="cartoon-section">
+    <img class="cartoon-img" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Cartoon mascot">
+    <div class="cartoon-caption">Meet Sparky, your learning buddy!</div>
+  </section>
+</div>
+
+<!-- Daily Study Material Page -->
+<div id="dailyPage" style="display:none;">
+  <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero-content">
+      <div class="hero-title">Daily Study Material</div>
+      <div class="hero-tagline">Fresh resources, notes, and assignments every day!</div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500&q=80" alt="Students studying together">
+    </div>
+  </div>
+  <div class="timer-section">
+    <div class="timer-label">⏰ Time spent on today's study:</div>
+    <div class="timer" id="studyTimer">00:00:00</div>
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">Today's Top Picks</div>
+    <div class="cards-grid">
+      <div class="beautiful-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Student studying">
+        <div class="card-title">Mathematics Worksheet</div>
+        <div class="card-desc">Practice today's math problems and boost your skills.</div>
+        <button>Download PDF</button>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Student with book">
+        <div class="card-title">Science Video Lesson</div>
+        <div class="card-desc">Watch and learn about the wonders of the solar system.</div>
+        <button>Watch Video</button>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" alt="Group study">
+        <div class="card-title">English Reading</div>
+        <div class="card-desc">Today's story: "The Curious Cat" with comprehension quiz.</div>
+        <button>Read Now</button>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80" alt="Student writing">
+        <div class="card-title">Social Studies Map</div>
+        <div class="card-desc">Interactive map activity: States and Capitals.</div>
+        <button>Start Activity</button>
+      </div>
+    </div>
+  </section>
+  <section class="features-section">
+    <div class="feature-card"><i class="fa-solid fa-bolt"></i>Instant Feedback<br><span style="font-size:0.97rem;font-weight:400;">Get real-time answers and explanations.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-users"></i>Study Groups<br><span style="font-size:0.97rem;font-weight:400;">Join virtual rooms for collaborative learning.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-mobile-alt"></i>Mobile Friendly<br><span style="font-size:0.97rem;font-weight:400;">Access material anywhere, anytime.</span></div>
+    <div class="feature-card"><i class="fa-solid fa-calendar-alt"></i>Daily Reminders<br><span style="font-size:0.97rem;font-weight:400;">Stay on track with push/email alerts.</span></div>
+  </section>
+</div>
+
+<!-- Total Students Page -->
+<div id="studentsPage" style="display:none;">
+  <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero-content">
+      <div class="hero-title">Our Achievers</div>
+      <div class="hero-tagline">More than <b>250,000 students</b> have passed national level competitions!</div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Student success">
+    </div>
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">Star Achievers Gallery</div>
+    <div class="cards-grid">
+      <div class="beautiful-card">
+        <img class="card-img" src="https://randomuser.me/api/portraits/men/11.jpg" alt="Topper">
+        <div class="card-title">Aryan Gupta</div>
+        <div class="card-desc">AIR 1, JEE Advanced 2024</div>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://randomuser.me/api/portraits/women/22.jpg" alt="Topper">
+        <div class="card-title">Priya Sharma</div>
+        <div class="card-desc">Gold Medalist, Science Olympiad</div>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://randomuser.me/api/portraits/men/33.jpg" alt="Topper">
+        <div class="card-title">Rahul Mehta</div>
+        <div class="card-desc">NTSE Scholar, 2023</div>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Topper">
+        <div class="card-title">Simran Kaur</div>
+        <div class="card-desc">AIIMS Topper 2024</div>
+      </div>
+    </div>
+  </section>
+  <div class="timer-section">
+    <div class="timer-label">⏲️ Time spent exploring achievers:</div>
+    <div class="timer" id="achieverTimer">00:00:00</div>
+  </div>
+</div>
+
+<!-- AI Tool Page -->
+<div id="aiPage" style="display:none;">
+  <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero-content">
+      <div class="hero-title">Star Coaching AI Tool</div>
+      <div class="hero-tagline">Solve your queries by audio, video, image, or text!</div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="AI tool">
+    </div>
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">Ask Your Doubt</div>
+    <div class="cards-grid">
+      <div class="beautiful-card">
+        <i class="fa-solid fa-microphone card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Audio Query</div>
+        <div class="card-desc">Record your question and get instant solutions.</div>
+        <button onclick="alert('Audio query feature coming soon!')">Record Now</button>
+      </div>
+      <div class="beautiful-card">
+        <i class="fa-solid fa-video card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Video Query</div>
+        <div class="card-desc">Upload a video of your doubt for detailed help.</div>
+        <button onclick="alert('Video query feature coming soon!')">Upload Video</button>
+      </div>
+      <div class="beautiful-card">
+        <i class="fa-solid fa-image card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Picture Query</div>
+        <div class="card-desc">Snap a photo of your question and get answers.</div>
+        <button onclick="alert('Picture query feature coming soon!')">Upload Image</button>
+      </div>
+      <div class="beautiful-card">
+        <i class="fa-solid fa-keyboard card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Type Query</div>
+        <div class="card-desc">Type your doubt and get instant solutions.</div>
+        <button onclick="alert('Text query feature coming soon!')">Type Now</button>
+      </div>
+    </div>
+  </section>
+  <div class="timer-section">
+    <div class="timer-label">🤖 Time spent with AI tool:</div>
+    <div class="timer" id="aiTimer">00:00:00</div>
+  </div>
+</div>
+
+<!-- Parents Page -->
+<div id="parentPage" style="display:none;">
+  <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero-content">
+      <div class="hero-title">Parent Dashboard</div>
+      <div class="hero-tagline">Track your child's progress and connect with teachers.</div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" alt="Parent dashboard">
+    </div>
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">Monitor & Support</div>
+    <div class="cards-grid">
+      <div class="beautiful-card">
+        <i class="fa-solid fa-chart-line card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Progress Reports</div>
+        <div class="card-desc">View detailed academic and skill progress of your child.</div>
+        <button>View Reports</button>
+      </div>
+      <div class="beautiful-card">
+        <i class="fa-solid fa-comments card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Feedback & Messaging</div>
+        <div class="card-desc">Connect with teachers and share feedback anytime.</div>
+        <button>Message Now</button>
+      </div>
+      <div class="beautiful-card">
+        <i class="fa-solid fa-lightbulb card-img" style="background:#fff3;padding:1.1rem;font-size:2.2rem;border-radius:50%;"></i>
+        <div class="card-title">Personalized Recommendations</div>
+        <div class="card-desc">Get suggestions to help your child excel further.</div>
+        <button>Get Tips</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Games Page -->
+<div id="gamePage" style="display:none;">
+  <div class="hero" style="margin-bottom:1.5rem;">
+    <div class="hero-content">
+      <div class="hero-title">Fun & Learning Games</div>
+      <div class="hero-tagline">Play, learn, and sharpen your mind!</div>
+    </div>
+    <div class="hero-illustration">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Cartoon mascot">
+    </div>
+  </div>
+  <section class="cards-section">
+    <div class="cards-title">Games for Kids</div>
+    <div class="cards-grid">
+      <div class="beautiful-card">
+        <img class="card-img" src="https://cdn.pixabay.com/photo/2014/04/03/10/32/children-312016_1280.png" alt="Cartoon game">
+        <div class="card-title">Math Puzzle</div>
+        <div class="card-desc">Solve fun math puzzles and earn stars!</div>
+        <button onclick="alert('Game coming soon!')">Play Now</button>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Cartoon game">
+        <div class="card-title">Word Builder</div>
+        <div class="card-desc">Build words and improve your vocabulary.</div>
+        <button onclick="alert('Game coming soon!')">Play Now</button>
+      </div>
+      <div class="beautiful-card">
+        <img class="card-img" src="https://cdn.pixabay.com/photo/2013/07/12/13/57/kids-147168_1280.png" alt="Cartoon game">
+        <div class="card-title">Memory Match</div>
+        <div class="card-desc">Test your memory with fun card games.</div>
+        <button onclick="alert('Game coming soon!')">Play Now</button>
+      </div>
+    </div>
+  </section>
+  <section class="cartoon-section">
+    <img class="cartoon-img" src="https://cdn.pixabay.com/photo/2017/01/31/13/14/children-2029547_1280.png" alt="Cartoon mascot">
+    <div class="cartoon-caption">Let's play and learn together!</div>
+  </section>
+</div>
+
+<!-- Sign In/Out Modal -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <h2 id="modalTitle">Sign In</h2>
+    <input type="text" id="username" placeholder="Username" autocomplete="username" />
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
+    <button id="modalActionBtn">Sign In</button>
+    <div id="authMsg" style="margin-top:0.8rem;color:var(--danger);font-size:1rem;"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-socials">
+    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+  <div style="margin-top:1rem;">
+    <a href="#" style="color:#fff;text-decoration:underline;">Contact</a> | 
+    <a href="#" style="color:#fff;text-decoration:underline;">Privacy Policy</a> | 
+    <a href="#" style="color:#fff;text-decoration:underline;">Mobile App</a>
+  </div>
+  <div style="margin-top:1rem;">&copy; 2025 Star Coaching Center | Hosted by Manish Sir | All rights reserved.</div>
+</footer>
+
+<script>
+  // SPA Navigation
+  function showPage(pageId) {
+    ["homePage","dailyPage","studentsPage","aiPage","parentPage","gamePage"].forEach(id =>
+      document.getElementById(id).style.display = (id === pageId) ? "" : "none"
+    );
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    if(pageId==="homePage") document.getElementById('homeLink').classList.add('active');
+    if(pageId==="dailyPage") document.getElementById('dailyLink').classList.add('active');
+    if(pageId==="studentsPage") document.getElementById('studentsLink').classList.add('active');
+    if(pageId==="aiPage") document.getElementById('aiLink').classList.add('active');
+    if(pageId==="parentPage") document.getElementById('parentLink').classList.add('active');
+    if(pageId==="gamePage") document.getElementById('gameLink').classList.add('active');
+  }
+  document.getElementById('homeLink').onclick = e => { e.preventDefault(); showPage('homePage'); };
+  document.getElementById('dailyLink').onclick = e => { e.preventDefault(); showPage('dailyPage'); };
+  document.getElementById('studentsLink').onclick = e => { e.preventDefault(); showPage('studentsPage'); };
+  document.getElementById('aiLink').onclick = e => { e.preventDefault(); showPage('aiPage'); };
+  document.getElementById('parentLink').onclick = e => { e.preventDefault(); showPage('parentPage'); };
+  document.getElementById('gameLink').onclick = e => { e.preventDefault(); showPage('gamePage'); };
+
+  // Dark/Light Mode Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.onclick = () => {
+    document.body.classList.toggle('dark');
+    themeToggle.innerHTML = document.body.classList.contains('dark')
+      ? '<i class="fa-solid fa-sun"></i>'
+      : '<i class="fa-solid fa-moon"></i>';
+  };
+
+  // Student Reviews Data
+  const reviews = [
+    { name: "Aarav Sharma", img: "https://randomuser.me/api/portraits/men/32.jpg", stars: 5, review: "The teachers are so supportive! I improved my grades and confidence." },
+    { name: "Priya Verma", img: "https://randomuser.me/api/portraits/women/44.jpg", stars: 5, review: "Star Coaching Center made learning fun and interactive. I love the online courses!" },
+    { name: "Rahul Singh", img: "https://randomuser.me/api/portraits/men/34.jpg", stars: 4, review: "The daily study material helps me stay ahead in class. Thank you, Manish Sir!" },
+    { name: "Sneha Patel", img: "https://randomuser.me/api/portraits/women/65.jpg", stars: 5, review: "With so many centers, I could join anywhere. The teachers are the best!" },
+    { name: "Vikram Joshi", img: "https://randomuser.me/api/portraits/men/51.jpg", stars: 5, review: "Skill-based courses gave me a head start in coding. Highly recommended." },
+    { name: "Aisha Khan", img: "https://randomuser.me/api/portraits/women/68.jpg", stars: 4, review: "The gamified lessons and badges keep me motivated every day." },
+    { name: "Deepak Mehra", img: "https://randomuser.me/api/portraits/men/61.jpg", stars: 5, review: "Live classes are interactive and easy to follow. I never miss a session." },
+    { name: "Meera Desai", img: "https://randomuser.me/api/portraits/women/56.jpg", stars: 5, review: "The accessibility features help my younger brother learn comfortably." },
+    { name: "Kabir Sethi", img: "https://randomuser.me/api/portraits/men/76.jpg", stars: 4, review: "I love the multilingual support. My parents can help me with Hindi lessons." },
+    { name: "Simran Kaur", img: "https://randomuser.me/api/portraits/women/21.jpg", stars: 5, review: "Assignments and notes are always up to date and easy to download." },
+    { name: "Harshita Gupta", img: "https://randomuser.me/api/portraits/women/43.jpg", stars: 5, review: "The online platform is so smooth and works great on my phone." },
+    { name: "Rohan Das", img: "https://randomuser.me/api/portraits/men/28.jpg", stars: 4, review: "Study groups helped me make new friends and learn together." },
+    { name: "Tanvi Nair", img: "https://randomuser.me/api/portraits/women/12.jpg", stars: 5, review: "Manish Sir's teaching style is unique and inspiring!" },
+    { name: "Yash Agarwal", img: "https://randomuser.me/api/portraits/men/18.jpg", stars: 5, review: "The best coaching center for both academics and skills." },
+    { name: "Ananya Rao", img: "https://randomuser.me/api/portraits/women/36.jpg", stars: 5, review: "I achieved top ranks in my school thanks to Star Coaching Center." }
+  ];
+  // Render Review Cards
+  const reviewCards = document.getElementById('reviewCards');
+  reviewCards.innerHTML = reviews.map(r => `
+    <div class="beautiful-card">
+      <img class="card-img" src="${r.img}" alt="${r.name}">
+      <div class="card-title">${r.name}</div>
+      <div class="card-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+      <div class="card-review">"${r.review}"</div>
+    </div>
+  `).join('');
+
+  // Sign In/Out Modal
+  const modalBg = document.getElementById('modalBg');
+  const authBtn = document.getElementById('authBtn');
+  const closeModal = document.getElementById('closeModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalActionBtn = document.getElementById('modalActionBtn');
+  const authMsg = document.getElementById('authMsg');
+  let signedIn = false;
+  let currentUser = '';
+
+  function openModal(signIn = true) {
+    modalBg.classList.add('active');
+    modalTitle.textContent = signIn ? 'Sign In' : 'Sign Out';
+    modalActionBtn.textContent = signIn ? 'Sign In' : 'Sign Out';
+    authMsg.textContent = '';
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+  }
+  function closeModalFunc() { modalBg.classList.remove('active'); }
+  authBtn.onclick = () => {
+    if (!signedIn) openModal(true);
+    else {
+      signedIn = false;
+      currentUser = '';
+      authBtn.textContent = 'Sign In';
+      alert('You have signed out.');
+    }
+  };
+  closeModal.onclick = closeModalFunc;
+  modalActionBtn.onclick = () => {
+    if (!signedIn) {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if (!user || !pass) {
+        authMsg.textContent = 'Please enter username and password.';
+        return;
+      }
+      signedIn = true;
+      currentUser = user;
+      authBtn.textContent = 'Sign Out';
+      closeModalFunc();
+      alert('Welcome, ' + user + '!');
+    } else {
+      signedIn = false;
+      currentUser = '';
+      authBtn.textContent = 'Sign In';
+      closeModalFunc();
+      alert('You have signed out.');
+    }
+  };
+  modalBg.onclick = function(e) { if (e.target === modalBg) closeModalFunc(); };
+
+  // Smart Timers (for each page)
+  function startTimer(displayId) {
+    let start = Date.now();
+    setInterval(() => {
+      let diff = Date.now() - start;
+      let h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+      document.getElementById(displayId).textContent =
+        (h<10?'0':'')+h+":"+(m<10?'0':'')+m+":"+(s<10?'0':'')+s;
+    }, 1000);
+  }
+  startTimer('studyTimer');
+  startTimer('achieverTimer');
+  startTimer('aiTimer');
+  // Show Home by default
+  showPage('homePage');
+</script>
+</body>
+</html>

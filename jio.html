@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crazy Games - Hosted by Manish sir</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon: #00fff7;
+      --dark-bg: #121212;
+      --card-bg: #181828;
+      --accent: #ff00cc;
+      --star: #ffcc00;
+    }
+    body {
+      margin: 0;
+      background: var(--dark-bg);
+      color: #eee;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    header {
+      background: #181828;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      border-bottom: 2px solid var(--neon);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2rem;
+      color: var(--neon);
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-shadow: 0 0 10px var(--neon);
+    }
+    nav a {
+      color: var(--neon);
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    .hero {
+      background: linear-gradient(120deg, #0f2027cc 70%, #2c5364cc), url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--neon);
+      text-shadow: 0 0 15px #000, 0 0 10px var(--neon);
+      padding: 2rem 1rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0.5rem 0;
+      font-family: 'Orbitron', Arial, sans-serif;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin: 0.5rem 0 0 0;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 0 10px var(--neon);
+    }
+    .game-section {
+      background: var(--card-bg);
+      margin: 2rem auto 0 auto;
+      padding: 2rem 1rem;
+      border-radius: 14px;
+      max-width: 900px;
+      box-shadow: 0 0 24px 0 var(--neon);
+      text-align: center;
+    }
+    .game-section h2 {
+      color: var(--neon);
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin-bottom: 0.5rem;
+    }
+    .game-section .subtitle {
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+    .game-images {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .game-images img {
+      height: 180px;
+      width: 270px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 0 16px 0 var(--neon);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .game-images img:hover {
+      transform: scale(1.07) rotate(-2deg);
+      box-shadow: 0 0 30px 5px var(--accent);
+      border: 2px solid var(--accent);
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--star);
+      margin-bottom: 1.2rem;
+    }
+    .rating .fa-star {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .rating .fa-star:hover,
+    .rating .fa-star.selected {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent);
+    }
+    .rating-value {
+      margin-left: 1rem;
+      color: var(--neon);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .comments-section {
+      background: var(--card-bg);
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      padding: 2rem 1rem 1rem 1rem;
+      border-radius: 14px;
+      box-shadow: 0 0 18px 0 var(--neon);
+    }
+    .comments-section h3 {
+      color: var(--neon);
+      font-family: 'Orbitron', Arial, sans-serif;
+      margin-bottom: 1rem;
+    }
+    .comment-form textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      border: none;
+      padding: 0.7rem;
+      font-size: 1rem;
+      resize: none;
+      background: #222;
+      color: #eee;
+      margin-bottom: 0.7rem;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .comment-form button {
+      background: var(--accent);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .comment-form button:hover {
+      background: var(--neon);
+      color: #222;
+    }
+    .comments-list {
+      margin-top: 1rem;
+    }
+    .comment {
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      color: #ccc;
+      box-shadow: 0 0 8px #00fff755;
+      word-break: break-word;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .game-images {
+        flex-direction: column;
+        align-items: center;
+      }
+      .game-images img {
+        width: 90vw;
+        height: 160px;
+      }
+      header, .game-section, .comments-section {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Crazy Games</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Games</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to Crazy Games</h1>
+  <p>Hosted by Manish sir</p>
+  <p style="color:#fff;font-size:1.2rem;margin-top:1rem;">New Release: <span style="color:var(--accent);font-weight:bold;">World Wide Champion</span></p>
+</section>
+
+<section class="game-section" aria-labelledby="game-title">
+  <h2 id="game-title">World Wide Champion</h2>
+  <div class="subtitle">Experience the ultimate madness. Compete, conquer, and become the champion of the world!</div>
+  <div class="game-images" aria-label="Crazy game images">
+    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="Crazy futuristic arena" />
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Intense action scene" />
+    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80" alt="Colorful gaming chaos" />
+  </div>
+  <div class="rating" id="starRating" aria-label="Game rating">
+    <i class="fa-regular fa-star" data-value="1"></i>
+    <i class="fa-regular fa-star" data-value="2"></i>
+    <i class="fa-regular fa-star" data-value="3"></i>
+    <i class="fa-regular fa-star" data-value="4"></i>
+    <i class="fa-regular fa-star" data-value="5"></i>
+    <span class="rating-value" id="ratingValue">4.0</span>
+  </div>
+</section>
+
+<section class="comments-section" aria-labelledby="comments-title">
+  <h3 id="comments-title">Community Comments</h3>
+  <form class="comment-form" id="commentForm">
+    <textarea id="commentInput" placeholder="Share your thoughts about Crazy Games or World Wide Champion..." required></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+  <div class="comments-list" id="commentsList"></div>
+</section>
+
+<script>
+  // Star Rating System
+  const stars = document.querySelectorAll('#starRating .fa-star');
+  const ratingValue = document.getElementById('ratingValue');
+  let currentRating = 4;
+
+  function setRating(rating) {
+    stars.forEach((star, idx) => {
+      star.classList.remove('fa-solid', 'selected');
+      star.classList.add('fa-regular');
+      if (idx < rating) {
+        star.classList.remove('fa-regular');
+        star.classList.add('fa-solid', 'selected');
+      }
+    });
+    ratingValue.textContent = rating.toFixed(1);
+    currentRating = rating;
+  }
+
+  stars.forEach((star, idx) => {
+    star.addEventListener('mouseenter', () => setRating(idx + 1));
+    star.addEventListener('click', () => setRating(idx + 1));
+  });
+  document.getElementById('starRating').addEventListener('mouseleave', () => setRating(currentRating));
+
+  setRating(currentRating);
+
+  // Comments Section
+  const form = document.getElementById('commentForm');
+  const input = document.getElementById('commentInput');
+  const commentsList = document.getElementById('commentsList');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (text) {
+      const commentDiv = document.createElement('div');
+      commentDiv.className = 'comment';
+      commentDiv.textContent = text;
+      commentsList.prepend(commentDiv);
+      input.value = '';
+    }
+  });
+</script>
+
+</body>
+</html>

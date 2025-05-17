@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun and Learn</title>
+  <style>
+    :root {
+      --primary-bg: #181f2b;
+      --accent: #00ffae;
+      --highlight: #ff6f3c;
+      --text: #f5f6fa;
+      --safe-bg: #222f3e;
+    }
+    body {
+      background: var(--primary-bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #10151c;
+      color: #e0e6ed;
+    }
+    .safe-mode {
+      background: var(--safe-bg);
+      color: #b2bec3;
+      filter: grayscale(0.3);
+    }
+    header {
+      background: var(--accent);
+      color: var(--primary-bg);
+      padding: 1rem 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 8px var(--highlight);
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      background: var(--highlight);
+      padding: 0.5rem 2rem;
+    }
+    nav a {
+      color: var(--primary-bg);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .gallery img {
+      width: 220px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px #0004;
+      transition: transform 0.2s;
+    }
+    .gallery img:hover {
+      transform: scale(1.07);
+      border: 2px solid var(--accent);
+    }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .controls button {
+      background: var(--accent);
+      color: var(--primary-bg);
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .controls button:hover {
+      background: var(--highlight);
+      color: #fff;
+    }
+    .focus-clock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+      font-size: 1.5rem;
+      background: #232b38;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #0003;
+      color: var(--accent);
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .cta button {
+      background: var(--highlight);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #0002;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span style="color: var(--highlight);">FUN</span> <span style="color: var(--accent);">AND</span> <span style="color: var(--highlight);">LEARN</span>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+    <a href="#">About</a>
+  </nav>
+  <div class="controls">
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button onclick="toggleSafeMode()">User Safety Mode</button>
+  </div>
+  <section class="gallery">
+    <img src="creative1.jpg" alt="Creative Learning 1">
+    <img src="creative2.jpg" alt="Creative Learning 2">
+    <img src="creative3.jpg" alt="Creative Learning 3">
+    <!-- Add more images as needed -->
+  </section>
+  <section class="focus-clock" id="focusClock">
+    Focus Clock: <span id="timer">25:00</span>
+    <div>
+      <button onclick="startTimer()">Start</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+  </section>
+  <div class="cta">
+    <button>Start Learning Now!</button>
+  </div>
+  <script>
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkmode', document.body.classList.contains('dark-mode'));
+    }
+    // Safe mode toggle
+    function toggleSafeMode() {
+      document.body.classList.toggle('safe-mode');
+    }
+    // Persistent dark mode
+    window.addEventListener('load', function() {
+      if (localStorage.getItem('darkmode') === 'true') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+
+    // Focus Clock
+    let timerInterval, timeLeft = 1500;
+    function updateTimer() {
+      let min = Math.floor(timeLeft / 60);
+      let sec = timeLeft % 60;
+      document.getElementById('timer').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+    }
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateTimer();
+        } else {
+          clearInterval(timerInterval);
+          alert('Focus session complete!');
+        }
+      }, 1000);
+    }
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timeLeft = 1500;
+      updateTimer();
+    }
+    updateTimer();
+  </script>
+</body>
+</html>
